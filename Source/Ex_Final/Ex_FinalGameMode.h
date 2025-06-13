@@ -1,0 +1,35 @@
+// ORQUESTADOR
+
+#pragma once
+
+#include "CoreMinimal.h"
+#include "GameFramework/GameModeBase.h"
+#include "DirectorBuilder.h"
+#include "LaberintoBuilder.h"
+#include "Ex_FinalGameMode.generated.h"
+
+UCLASS(minimalapi)
+class AEx_FinalGameMode : public AGameModeBase
+{
+	GENERATED_BODY()
+
+public:
+	AEx_FinalGameMode();
+
+protected:
+    virtual void BeginPlay() override;
+
+private:
+    UPROPERTY()
+    ADirectorBuilder* Director;
+
+    UPROPERTY()
+    ALaberintoBuilder* LaberintoBuilder;
+
+    void CreateMaze();
+    void CreateNewMaze(int32 Width = 20, int32 Height = 20);
+};
+
+
+
+

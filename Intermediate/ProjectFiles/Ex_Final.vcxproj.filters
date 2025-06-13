@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <None Include="..\..\Ex_Final.uproject" />
+    <Filter Include="Source">
+      <UniqueIdentifier>{F31BBDD1-B3E8-3BCC-9652-680E16935819}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\Ex_Final.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\..\Source\Ex_FinalEditor.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\..\.vsconfig" />
+    <Filter Include="Config">
+      <UniqueIdentifier>{FA535FFB-25E1-3D20-B416-52F9BE21E06E}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Config\DefaultEditor.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEditorPerProjectUserSettings.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEngine.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultGame.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultInput.ini">
+      <Filter>Config</Filter>
+    </None>
+    <Filter Include="Source\Ex_Final">
+      <UniqueIdentifier>{6D4066D2-A3FA-3C9F-9B53-1BF09737133E}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\Ex_Final\BloqueAcero.cpp">
+      <Filter>Source\Ex_Final</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Ex_Final\BloqueAcero.h">
+      <Filter>Source\Ex_Final</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Ex_Final\BloqueBase.cpp">
+      <Filter>Source\Ex_Final</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Ex_Final\BloqueBase.h">
+      <Filter>Source\Ex_Final</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Ex_Final\BloqueBurbuja.cpp">
+      <Filter>Source\Ex_Final</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Ex_Final\BloqueBurbuja.h">
+      <Filter>Source\Ex_Final</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Ex_Final\BloqueConcreto.cpp">
+      <Filter>Source\Ex_Final</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Ex_Final\BloqueConcreto.h">
+      <Filter>Source\Ex_Final</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Ex_Final\BloqueLadrillo.cpp">
+      <Filter>Source\Ex_Final</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Ex_Final\BloqueLadrillo.h">
+      <Filter>Source\Ex_Final</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Ex_Final\BloqueMadera.cpp">
+      <Filter>Source\Ex_Final</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Ex_Final\BloqueMadera.h">
+      <Filter>Source\Ex_Final</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Ex_Final\DirectorBuilder.cpp">
+      <Filter>Source\Ex_Final</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Ex_Final\DirectorBuilder.h">
+      <Filter>Source\Ex_Final</Filter>
+    </ClCompile>
+    <None Include="..\..\Source\Ex_Final\Ex_Final.Build.cs">
+      <Filter>Source\Ex_Final</Filter>
+    </None>
+    <ClCompile Include="..\..\Source\Ex_Final\Ex_Final.cpp">
+      <Filter>Source\Ex_Final</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Ex_Final\Ex_Final.h">
+      <Filter>Source\Ex_Final</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Ex_Final\Ex_FinalCharacter.cpp">
+      <Filter>Source\Ex_Final</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Ex_Final\Ex_FinalCharacter.h">
+      <Filter>Source\Ex_Final</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Ex_Final\Ex_FinalGameMode.cpp">
+      <Filter>Source\Ex_Final</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Ex_Final\Ex_FinalGameMode.h">
+      <Filter>Source\Ex_Final</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Ex_Final\ILaberintoBuilder.cpp">
+      <Filter>Source\Ex_Final</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Ex_Final\ILaberintoBuilder.h">
+      <Filter>Source\Ex_Final</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Ex_Final\LaberintoBuilder.cpp">
+      <Filter>Source\Ex_Final</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Ex_Final\LaberintoBuilder.h">
+      <Filter>Source\Ex_Final</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Ex_Final\MyPlayerController.cpp">
+      <Filter>Source\Ex_Final</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Ex_Final\MyPlayerController.h">
+      <Filter>Source\Ex_Final</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Ex_Final\Niveles.cpp">
+      <Filter>Source\Ex_Final</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Ex_Final\Niveles.h">
+      <Filter>Source\Ex_Final</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
