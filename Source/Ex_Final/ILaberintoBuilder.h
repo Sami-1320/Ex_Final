@@ -11,12 +11,12 @@
 UINTERFACE(MinimalAPI)
 class UILaberintoBuilder : public UInterface
 {
-	GENERATED_BODY()
+    GENERATED_BODY()
 };
 
 class EX_FINAL_API IILaberintoBuilder
 {
-	GENERATED_BODY()
+    GENERATED_BODY()
 
 public:
     // === MÉTODOS BÁSICOS DEL BUILDER ===

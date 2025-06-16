@@ -7,12 +7,12 @@
 #include "BloqueMadera.generated.h"
 
 /**
- * 
+ *
  */
 UCLASS()
 class EX_FINAL_API ABloqueMadera : public ABloqueBase
 {
-	GENERATED_BODY()
+    GENERATED_BODY()
 
 public:
     ABloqueMadera();

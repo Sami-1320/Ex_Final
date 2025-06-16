@@ -7,12 +7,12 @@
 #include "BloqueAcero.generated.h"
 
 /**
- * 
+ *
  */
 UCLASS()
 class EX_FINAL_API ABloqueAcero : public ABloqueBase
 {
-	GENERATED_BODY()
+    GENERATED_BODY()
 
 public:
     ABloqueAcero();

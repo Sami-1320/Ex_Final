@@ -24,9 +24,9 @@ class EX_FINAL_API ABloqueBase : public AActor
 {
     GENERATED_BODY()
 
-public:	
-	
-	ABloqueBase();
+public:
+
+    ABloqueBase();
 
 protected:
 

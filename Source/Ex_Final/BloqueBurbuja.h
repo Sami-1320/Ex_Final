@@ -7,13 +7,13 @@
 #include "BloqueBurbuja.generated.h"
 
 /**
- * 
+ *
  */
 UCLASS()
 class EX_FINAL_API ABloqueBurbuja : public ABloqueBase
 {
-	GENERATED_BODY()
-	
+    GENERATED_BODY()
+
 public:
     ABloqueBurbuja();
     virtual void ConfigurarBloque() override;

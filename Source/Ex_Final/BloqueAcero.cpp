@@ -23,4 +23,3 @@ void ABloqueAcero::ConfigurarBloque()
         SetMaterial(SteelMaterial);
     }
 }
-

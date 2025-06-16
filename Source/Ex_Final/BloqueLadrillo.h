@@ -7,12 +7,12 @@
 #include "BloqueLadrillo.generated.h"
 
 /**
- * 
+ *
  */
 UCLASS()
 class EX_FINAL_API ABloqueLadrillo : public ABloqueBase
 {
-	GENERATED_BODY()
+    GENERATED_BODY()
 
 public:
     ABloqueLadrillo();

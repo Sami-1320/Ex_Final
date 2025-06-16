@@ -11,11 +11,11 @@
 UCLASS()
 class EX_FINAL_API ALaberintoBuilder : public AActor, public IILaberintoBuilder
 {
-	GENERATED_BODY()
-	
-public:	
-	// Sets default values for this actor's properties
-	ALaberintoBuilder();
+    GENERATED_BODY()
+
+public:
+    // Sets default values for this actor's properties
+    ALaberintoBuilder();
 
 protected:
     virtual void BeginPlay() override;

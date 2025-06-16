@@ -11,6 +11,8 @@
     <None Include="..\..\Source\Ex_FinalEditor.Target.cs">
       <Filter>Source</Filter>
     </None>
+    <None Include="..\..\.gitattributes" />
+    <None Include="..\..\.gitignore" />
     <None Include="..\..\.vsconfig" />
     <Filter Include="Config">
       <UniqueIdentifier>{FA535FFB-25E1-3D20-B416-52F9BE21E06E}</UniqueIdentifier>
@@ -57,6 +59,18 @@
     <ClCompile Include="..\..\Source\Ex_Final\BloqueConcreto.h">
       <Filter>Source\Ex_Final</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Ex_Final\BloqueDestructible.cpp">
+      <Filter>Source\Ex_Final</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Ex_Final\BloqueDestructible.h">
+      <Filter>Source\Ex_Final</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Ex_Final\BloqueIndestructible.cpp">
+      <Filter>Source\Ex_Final</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Ex_Final\BloqueIndestructible.h">
+      <Filter>Source\Ex_Final</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Ex_Final\BloqueLadrillo.cpp">
       <Filter>Source\Ex_Final</Filter>
     </ClCompile>
@@ -67,6 +81,12 @@
       <Filter>Source\Ex_Final</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Ex_Final\BloqueMadera.h">
+      <Filter>Source\Ex_Final</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Ex_Final\CompositeManagerLaberinto.cpp">
+      <Filter>Source\Ex_Final</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Ex_Final\CompositeManagerLaberinto.h">
       <Filter>Source\Ex_Final</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Ex_Final\DirectorBuilder.cpp">
@@ -94,6 +114,12 @@
       <Filter>Source\Ex_Final</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Ex_Final\Ex_FinalGameMode.h">
+      <Filter>Source\Ex_Final</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Ex_Final\IBloqueComposite.cpp">
+      <Filter>Source\Ex_Final</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Ex_Final\IBloqueComposite.h">
       <Filter>Source\Ex_Final</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Ex_Final\ILaberintoBuilder.cpp">

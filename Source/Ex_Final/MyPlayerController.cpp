@@ -1,9 +1,9 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
 #include "MyPlayerController.h"
 #include "Engine/World.h"
 #include "Engine/Engine.h"
+#include "EngineUtils.h"
 
 AMyPlayerController::AMyPlayerController()
 {
@@ -15,13 +15,82 @@ AMyPlayerController::AMyPlayerController()
 void AMyPlayerController::BeginPlay()
 {
     Super::BeginPlay();
+
+    // Iniciar la búsqueda del CompositeManager inmediatamente
+    BuscarCompositeManager();
 }
 
 void AMyPlayerController::SetupInputComponent()
 {
     Super::SetupInputComponent();
+
+    // Input mappings existentes
     InputComponent->BindAction("LeftClick", IE_Pressed, this, &AMyPlayerController::OnLeftClick);
     InputComponent->BindAction("RightClick", IE_Pressed, this, &AMyPlayerController::OnRightClick);
+
+    // Input mapping para iniciar/detener movimiento con tecla Y
+    InputComponent->BindAction("StartCompositeMovement", IE_Pressed, this, &AMyPlayerController::OnStartCompositeMovement);
+}
+
+void AMyPlayerController::OnStartCompositeMovement()
+{
+    if (GEngine)
+    {
+        GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::White,
+            TEXT("Tecla Y presionada - Alternando movimiento Composite"));
+    }
+
+    if (CompositeManager)
+    {
+        CompositeManager->ToggleMovimiento();
+        FString EstadoMovimiento = CompositeManager->IsMovimientoActivo() ? TEXT("ACTIVADO") : TEXT("DESACTIVADO");
+    }
+    else
+    {
+        /*if (GEngine)
+        {
+            GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red,
+                TEXT("CompositeManager no encontrado - Intentando buscar..."));
+        }*/
+        BuscarCompositeManager();
+    }
+}
+
+void AMyPlayerController::BuscarCompositeManager()
+{
+    if (!GetWorld())
+    {
+        // Reintentar en el próximo tick si el mundo no está disponible
+        GetWorldTimerManager().SetTimerForNextTick(this, &AMyPlayerController::BuscarCompositeManager);
+        return;
+    }
+
+    bool bFound = false;
+    for (TActorIterator<ACompositeManagerLaberinto> ActorItr(GetWorld()); ActorItr; ++ActorItr)
+    {
+        CompositeManager = *ActorItr;
+        if (CompositeManager)
+        {
+            if (GEngine)
+            {
+                GEngine->AddOnScreenDebugMessage(-1, 3.0f, FColor::Green,
+                    TEXT("CompositeManager encontrado y vinculado"));
+            }
+            bFound = true;
+            break;
+        }
+    }
+
+    if (!bFound)
+    {
+        /*if (GEngine)
+        {
+            GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Orange,
+                TEXT("CompositeManager no encontrado - Reintentando en 1 segundo..."));
+        }*/
+        // Reintentar después de 1 segundo
+        GetWorldTimerManager().SetTimerForNextTick(this, &AMyPlayerController::BuscarCompositeManager);
+    }
 }
 
 void AMyPlayerController::OnLeftClick()
@@ -76,16 +145,16 @@ void AMyPlayerController::DestroyBlock(ABloqueBase* Block)
     switch (TipoBloque)
     {
     case ETipoBloque::Madera:
-        if (GEngine) GEngine->AddOnScreenDebugMessage(-1, 1.5f, FColor::Orange, TEXT("¡CRACK! Madera destruida"));
+        if (GEngine) GEngine->AddOnScreenDebugMessage(-1, 1.5f, FColor::Orange, TEXT("CRACK! Madera destruida"));
         break;
     case ETipoBloque::Concreto:
-        if (GEngine) GEngine->AddOnScreenDebugMessage(-1, 1.5f, FColor::Blue, TEXT("¡CRASH! Concreto destruido"));
+        if (GEngine) GEngine->AddOnScreenDebugMessage(-1, 1.5f, FColor::Blue, TEXT("CRASH! Concreto destruido"));
         break;
     case ETipoBloque::Ladrillo:
-        if (GEngine) GEngine->AddOnScreenDebugMessage(-1, 1.5f, FColor::Red, TEXT("¡THUD! Ladrillo destruido"));
+        if (GEngine) GEngine->AddOnScreenDebugMessage(-1, 1.5f, FColor::Red, TEXT("THUD! Ladrillo destruido"));
         break;
     case ETipoBloque::Burbuja:
-        if (GEngine) GEngine->AddOnScreenDebugMessage(-1, 1.5f, FColor::Cyan, TEXT("¡POP! Burbuja reventada"));
+        if (GEngine) GEngine->AddOnScreenDebugMessage(-1, 1.5f, FColor::Cyan, TEXT("POP! Burbuja reventada"));
         break;
     default:
         break;
@@ -104,11 +173,4 @@ void AMyPlayerController::ShowBlockInfo(ABloqueBase* Block)
 
     FString DestructibleText = bIsDestructible ? TEXT("DESTRUCTIBLE") : TEXT("INDESTRUCTIBLE");
     FColor TextColor = bIsDestructible ? FColor::Green : FColor::Red;
-
-    if (GEngine)
-    {
-        GEngine->AddOnScreenDebugMessage(-1, 3.0f, TextColor,
-            FString::Printf(TEXT("Tipo: %s | %s | Pos: %.0f,%.0f"),
-                *BlockType, *DestructibleText, BlockLocation.X, BlockLocation.Y));
-    }
 }

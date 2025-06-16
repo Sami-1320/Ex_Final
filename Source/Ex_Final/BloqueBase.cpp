@@ -50,5 +50,3 @@ void ABloqueBase::SetTipoBloque(ETipoBloque Tipo)
 {
     TipoBloque = Tipo;
 }
-
-

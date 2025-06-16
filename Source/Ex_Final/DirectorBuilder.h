@@ -14,10 +14,10 @@ UCLASS()
 class EX_FINAL_API ADirectorBuilder : public AActor
 {
     GENERATED_BODY()
-	
-public:	
-	// Sets default values for this actor's properties
-	ADirectorBuilder();
+
+public:
+    // Sets default values for this actor's properties
+    ADirectorBuilder();
 
 protected:
     virtual void BeginPlay() override;
