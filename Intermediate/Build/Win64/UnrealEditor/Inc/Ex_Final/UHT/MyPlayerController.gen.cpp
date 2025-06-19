@@ -12,6 +12,7 @@ void EmptyLinkFunctionForGeneratedCodeMyPlayerController() {}
 // Begin Cross Module References
 ENGINE_API UClass* Z_Construct_UClass_APlayerController();
 EX_FINAL_API UClass* Z_Construct_UClass_ACompositeManagerLaberinto_NoRegister();
+EX_FINAL_API UClass* Z_Construct_UClass_ALaberintoFacade_NoRegister();
 EX_FINAL_API UClass* Z_Construct_UClass_AMyPlayerController();
 EX_FINAL_API UClass* Z_Construct_UClass_AMyPlayerController_NoRegister();
 UPackage* Z_Construct_UPackage__Script_Ex_Final();
@@ -36,15 +37,19 @@ struct Z_Construct_UClass_AMyPlayerController_Statics
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_CompositeManager_MetaData[] = {
 #if !UE_BUILD_SHIPPING
-		{ "Comment", "// Referencia al CompositeManager\n" },
+		{ "Comment", "// Referencias a sistemas\n" },
 #endif
 		{ "ModuleRelativePath", "MyPlayerController.h" },
 #if !UE_BUILD_SHIPPING
-		{ "ToolTip", "Referencia al CompositeManager" },
+		{ "ToolTip", "Referencias a sistemas" },
 #endif
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_LaberintoFacade_MetaData[] = {
+		{ "ModuleRelativePath", "MyPlayerController.h" },
 	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_CompositeManager;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_LaberintoFacade;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
@@ -53,8 +58,10 @@ struct Z_Construct_UClass_AMyPlayerController_Statics
 	static const UECodeGen_Private::FClassParams ClassParams;
 };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMyPlayerController_Statics::NewProp_CompositeManager = { "CompositeManager", nullptr, (EPropertyFlags)0x0040000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMyPlayerController, CompositeManager), Z_Construct_UClass_ACompositeManagerLaberinto_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CompositeManager_MetaData), NewProp_CompositeManager_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMyPlayerController_Statics::NewProp_LaberintoFacade = { "LaberintoFacade", nullptr, (EPropertyFlags)0x0040000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMyPlayerController, LaberintoFacade), Z_Construct_UClass_ALaberintoFacade_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_LaberintoFacade_MetaData), NewProp_LaberintoFacade_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AMyPlayerController_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMyPlayerController_Statics::NewProp_CompositeManager,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMyPlayerController_Statics::NewProp_LaberintoFacade,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_AMyPlayerController_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_AMyPlayerController_Statics::DependentSingletons[])() = {
@@ -97,10 +104,10 @@ AMyPlayerController::~AMyPlayerController() {}
 struct Z_CompiledInDeferFile_FID_Users_samsa_Documents_Unreal_Projects_Ex_Final_Source_Ex_Final_MyPlayerController_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AMyPlayerController, AMyPlayerController::StaticClass, TEXT("AMyPlayerController"), &Z_Registration_Info_UClass_AMyPlayerController, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AMyPlayerController), 2879600740U) },
+		{ Z_Construct_UClass_AMyPlayerController, AMyPlayerController::StaticClass, TEXT("AMyPlayerController"), &Z_Registration_Info_UClass_AMyPlayerController, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AMyPlayerController), 3271511563U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_samsa_Documents_Unreal_Projects_Ex_Final_Source_Ex_Final_MyPlayerController_h_3920278286(TEXT("/Script/Ex_Final"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_samsa_Documents_Unreal_Projects_Ex_Final_Source_Ex_Final_MyPlayerController_h_677970012(TEXT("/Script/Ex_Final"),
 	Z_CompiledInDeferFile_FID_Users_samsa_Documents_Unreal_Projects_Ex_Final_Source_Ex_Final_MyPlayerController_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_samsa_Documents_Unreal_Projects_Ex_Final_Source_Ex_Final_MyPlayerController_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

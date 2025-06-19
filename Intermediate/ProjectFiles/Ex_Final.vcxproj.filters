@@ -134,6 +134,12 @@
     <ClCompile Include="..\..\Source\Ex_Final\LaberintoBuilder.h">
       <Filter>Source\Ex_Final</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Ex_Final\LaberintoFacade.cpp">
+      <Filter>Source\Ex_Final</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Ex_Final\LaberintoFacade.h">
+      <Filter>Source\Ex_Final</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Ex_Final\MyPlayerController.cpp">
       <Filter>Source\Ex_Final</Filter>
     </ClCompile>

@@ -52,6 +52,11 @@ public:
     int32 GetHeight() const override { return MazeHeight; }
     float GetBlockSize() const override { return BlockSize; }
     FVector GetOffset() const override { return LaberintoOffset; }
+    
+    // === MÉTODO PÚBLICO PARA EL FACADE ===
+    // Crear bloque específico (usado por Facade para niveles específicos)
+    UFUNCTION(BlueprintCallable, Category = "Laberinto Builder")
+    ABloqueBase* CrearBloque(ETipoBloque TipoBloque, const FVector& Posicion);
 
     // === MÉTODOS PÚBLICOS ADICIONALES ===
     void SetTile(int32 X, int32 Y, ETipoBloque Tipo);
@@ -60,7 +65,6 @@ public:
 
 private:
     void InicializarTileMap();
-    ABloqueBase* CrearBloque(ETipoBloque TipoBloque, const FVector& Posicion);
     ETipoBloque SeleccionarTipoBloqueAleatorio();
     FVector TileToWorldPosition(int32 X, int32 Y) const;
     void LimpiarActores();

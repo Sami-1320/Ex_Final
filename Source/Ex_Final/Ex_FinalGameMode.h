@@ -1,12 +1,9 @@
-// ORQUESTADOR
 
 #pragma once
 
 #include "CoreMinimal.h"
 #include "GameFramework/GameModeBase.h"
-#include "DirectorBuilder.h"
-#include "LaberintoBuilder.h"
-#include "CompositeManagerLaberinto.h"
+#include "LaberintoFacade.h" 
 #include "MyPlayerController.h"
 #include "GameFramework/Pawn.h"
 #include "GameFramework/PlayerController.h"
@@ -24,22 +21,14 @@ protected:
     virtual void BeginPlay() override;
 
 private:
-    // Builder Pattern
     UPROPERTY()
-    ADirectorBuilder* Director;
-
-    UPROPERTY()
-    ALaberintoBuilder* LaberintoBuilder;
-
-    // Composite Pattern
-    UPROPERTY()
-    ACompositeManagerLaberinto* CompositeManager;
+    ALaberintoFacade* LaberintoFacade;
 
     // Referencia al PlayerController generado
     UPROPERTY()
     APlayerController* PlayerController;
 
-    void CreateMaze();
-    void CreateNewMaze(int32 Width = 20, int32 Height = 20);
-    void InicializarComposite();
+    // === MÉTODOS SIMPLIFICADOS CON FACADE ===
+    void CreateMaze();                                                      
+
 };

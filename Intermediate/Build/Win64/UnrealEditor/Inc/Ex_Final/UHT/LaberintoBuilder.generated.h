@@ -9,10 +9,16 @@
 #include "UObject/ScriptMacros.h"
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
+class ABloqueBase;
+enum class ETipoBloque : uint8;
 #ifdef EX_FINAL_LaberintoBuilder_generated_h
 #error "LaberintoBuilder.generated.h already included, missing '#pragma once' in LaberintoBuilder.h"
 #endif
 #define EX_FINAL_LaberintoBuilder_generated_h
+
+#define FID_Users_samsa_Documents_Unreal_Projects_Ex_Final_Source_Ex_Final_LaberintoBuilder_h_14_RPC_WRAPPERS_NO_PURE_DECLS \
+	DECLARE_FUNCTION(execCrearBloque);
+
 
 #define FID_Users_samsa_Documents_Unreal_Projects_Ex_Final_Source_Ex_Final_LaberintoBuilder_h_14_INCLASS_NO_PURE_DECLS \
 private: \
@@ -40,6 +46,7 @@ public: \
 #define FID_Users_samsa_Documents_Unreal_Projects_Ex_Final_Source_Ex_Final_LaberintoBuilder_h_14_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
+	FID_Users_samsa_Documents_Unreal_Projects_Ex_Final_Source_Ex_Final_LaberintoBuilder_h_14_RPC_WRAPPERS_NO_PURE_DECLS \
 	FID_Users_samsa_Documents_Unreal_Projects_Ex_Final_Source_Ex_Final_LaberintoBuilder_h_14_INCLASS_NO_PURE_DECLS \
 	FID_Users_samsa_Documents_Unreal_Projects_Ex_Final_Source_Ex_Final_LaberintoBuilder_h_14_ENHANCED_CONSTRUCTORS \
 private: \

@@ -31,11 +31,6 @@ void ABloqueIndestructible::Tick(float DeltaTime)
 
 void ABloqueIndestructible::Execute()
 {
-    if (GEngine)
-    {
-        GEngine->AddOnScreenDebugMessage(-1, 3.0f, FColor::Blue,
-            FString::Printf(TEXT("EJECUTANDO GRUPO INDESTRUCTIBLE - %d bloques"), GetCantidadBloques()));
-    }
 
     // Delegar ejecución a todos los bloques hijos
     for (ABloqueBase* Bloque : BloquesIndestructibles)
@@ -90,11 +85,7 @@ void ABloqueIndestructible::AgregarBloque(ABloqueBase* Bloque)
     if (Bloque && !Bloque->IsDestructible() && !BloquesIndestructibles.Contains(Bloque))
     {
         BloquesIndestructibles.Add(Bloque);
-        if (GEngine)
-        {
-            GEngine->AddOnScreenDebugMessage(-1, 3.0f, FColor::Yellow,
-                FString::Printf(TEXT("Bloque indestructible añadido. Total: %d"), BloquesIndestructibles.Num()));
-        }
+        
     }
 }
 

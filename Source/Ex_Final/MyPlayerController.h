@@ -1,10 +1,11 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+// PLAYER CONTROLLER MODIFICADO PARA MANEJAR NIVELES DEL FACADE
 
 #pragma once
 
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
 #include "CompositeManagerLaberinto.h"
+#include "LaberintoFacade.h"
 #include "BloqueBase.h"
 #include "MyPlayerController.generated.h"
 
@@ -21,18 +22,29 @@ protected:
     virtual void SetupInputComponent() override;
 
 private:
-    // Referencia al CompositeManager
+    // Referencias a sistemas
     UPROPERTY()
     ACompositeManagerLaberinto* CompositeManager;
+
+    UPROPERTY()
+    ALaberintoFacade* LaberintoFacade;
 
     // Métodos de input
     void OnLeftClick();
     void OnRightClick();
-    void OnStartCompositeMovement(); // Declaración del método para la tecla Y
+    void OnStartCompositeMovement();
+    void OnNivel0_Randomico();
+    void OnNivel1_Concreto();
+    void OnNivel2_Ladrillo();
+    void OnNivel3_Madera();
+    void OnNivel4_Burbuja();
 
-    // Métodos de interacción
+    // Métodos de utilidad
     void BuscarCompositeManager();
+    void BuscarLaberintoFacade();
     ABloqueBase* GetBlockUnderCursor();
     void DestroyBlock(ABloqueBase* Block);
     void ShowBlockInfo(ABloqueBase* Block);
+    void CrearNivelConFacade(int32 NumeroNivel);
+    void MostrarInfoNivel();
 };

@@ -31,11 +31,6 @@ void ABloqueDestructible::Tick(float DeltaTime)
 
 void ABloqueDestructible::Execute()
 {
-    if (GEngine)
-    {
-        GEngine->AddOnScreenDebugMessage(-1, 3.0f, FColor::Red,
-            FString::Printf(TEXT("EJECUTANDO GRUPO DESTRUCTIBLE - %d bloques"), GetCantidadBloques()));
-    }
 
     // Delegar ejecución a todos los bloques hijos
     for (ABloqueBase* Bloque : BloquesDestructibles)
@@ -43,11 +38,6 @@ void ABloqueDestructible::Execute()
         if (IsValid(Bloque))
         {
             FString TipoTexto = Bloque->GetBlockType();
-            if (GEngine)
-            {
-                GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Orange,
-                    FString::Printf(TEXT("Ejecutando bloque: %s"), *TipoTexto));
-            }
         }
     }
 }
@@ -90,11 +80,7 @@ void ABloqueDestructible::AgregarBloque(ABloqueBase* Bloque)
     {
         BloquesDestructibles.Add(Bloque);
         PosicionesOriginales.Add(Bloque->GetActorLocation()); // Guardar posición original
-        if (GEngine)
-        {
-            GEngine->AddOnScreenDebugMessage(-1, 3.0f, FColor::Yellow,
-                FString::Printf(TEXT("Bloque destructible añadido. Total: %d"), BloquesDestructibles.Num()));
-        }
+        
     }
 }
 

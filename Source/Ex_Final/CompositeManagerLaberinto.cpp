@@ -24,11 +24,6 @@ void ACompositeManagerLaberinto::InicializarGrupos()
     GrupoDestructible = GetWorld()->SpawnActor<ABloqueDestructible>();
     GrupoIndestructible = GetWorld()->SpawnActor<ABloqueIndestructible>();
 
-    if (GEngine)
-    {
-        GEngine->AddOnScreenDebugMessage(-1, 4.0f, FColor::Yellow,
-            TEXT("COMPOSITE EJECUTADO - Grupos inicializados"));
-    }
 }
 
 void ACompositeManagerLaberinto::AgregarBloqueAlGrupo(ABloqueBase* Bloque)
@@ -119,19 +114,13 @@ void ACompositeManagerLaberinto::ToggleMovimiento()
         {
             GrupoDestructible->IniciarMovimiento();
         }
-        else if (GEngine)
-        {
-            GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red, TEXT("Error: GrupoDestructible es NULL"));
-        }
+        
 
         if (GrupoIndestructible)
         {
             GrupoIndestructible->IniciarMovimiento();
         }
-        else if (GEngine)
-        {
-            GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red, TEXT("Error: GrupoIndestructible es NULL"));
-        }
+       
     }
     else
     {

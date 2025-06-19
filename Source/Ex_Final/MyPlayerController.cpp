@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+// PLAYER CONTROLLER MODIFICADO PARA MANEJAR NIVELES DEL FACADE
 
 #include "MyPlayerController.h"
 #include "Engine/World.h"
@@ -10,14 +10,17 @@ AMyPlayerController::AMyPlayerController()
     bShowMouseCursor = true;
     bEnableClickEvents = true;
     bEnableMouseOverEvents = true;
+
+    // Inicializar referencias
+    CompositeManager = nullptr;
+    LaberintoFacade = nullptr;
 }
 
 void AMyPlayerController::BeginPlay()
 {
     Super::BeginPlay();
-
-    // Iniciar la búsqueda del CompositeManager inmediatamente
     BuscarCompositeManager();
+    BuscarLaberintoFacade();
 }
 
 void AMyPlayerController::SetupInputComponent()
@@ -27,9 +30,65 @@ void AMyPlayerController::SetupInputComponent()
     // Input mappings existentes
     InputComponent->BindAction("LeftClick", IE_Pressed, this, &AMyPlayerController::OnLeftClick);
     InputComponent->BindAction("RightClick", IE_Pressed, this, &AMyPlayerController::OnRightClick);
-
-    // Input mapping para iniciar/detener movimiento con tecla Y
     InputComponent->BindAction("StartCompositeMovement", IE_Pressed, this, &AMyPlayerController::OnStartCompositeMovement);
+
+    // Nuevos input mappings para niveles
+    InputComponent->BindAction("Nivel0", IE_Pressed, this, &AMyPlayerController::OnNivel0_Randomico);
+    InputComponent->BindAction("Nivel1", IE_Pressed, this, &AMyPlayerController::OnNivel1_Concreto);
+    InputComponent->BindAction("Nivel2", IE_Pressed, this, &AMyPlayerController::OnNivel2_Ladrillo);
+    InputComponent->BindAction("Nivel3", IE_Pressed, this, &AMyPlayerController::OnNivel3_Madera);
+    InputComponent->BindAction("Nivel4", IE_Pressed, this, &AMyPlayerController::OnNivel4_Burbuja);
+}
+
+// === MÉTODOS DE INPUT PARA NIVELES ===
+void AMyPlayerController::OnNivel0_Randomico()
+{
+    if (GEngine)
+    {
+        GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::White,
+            TEXT("NIVEL 0 - RANDOMICO"));
+    }
+    CrearNivelConFacade(0);
+}
+
+void AMyPlayerController::OnNivel1_Concreto()
+{
+    if (GEngine)
+    {
+        GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Blue,
+            TEXT("NIVEL 1 - CONCRETO"));
+    }
+    CrearNivelConFacade(1);
+}
+
+void AMyPlayerController::OnNivel2_Ladrillo()
+{
+    if (GEngine)
+    {
+        GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red,
+            TEXT("NIVEL 2 - LADRILLO"));
+    }
+    CrearNivelConFacade(2);
+}
+
+void AMyPlayerController::OnNivel3_Madera()
+{
+    if (GEngine)
+    {
+        GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Orange,
+            TEXT("NIVEL 3 - MADERA"));
+    }
+    CrearNivelConFacade(3);
+}
+
+void AMyPlayerController::OnNivel4_Burbuja()
+{
+    if (GEngine)
+    {
+        GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Cyan,
+            TEXT("NIVEL 4 - BURBUJA"));
+    }
+    CrearNivelConFacade(4);
 }
 
 void AMyPlayerController::OnStartCompositeMovement()
@@ -37,59 +96,23 @@ void AMyPlayerController::OnStartCompositeMovement()
     if (GEngine)
     {
         GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::White,
-            TEXT("Tecla Y presionada - Alternando movimiento Composite"));
+            TEXT("Movimiento Composite"));
     }
 
-    if (CompositeManager)
+    if (LaberintoFacade)
+    {
+        static bool bAnimacionesActivas = false;
+        bAnimacionesActivas = !bAnimacionesActivas;
+        LaberintoFacade->GestionarAnimaciones(bAnimacionesActivas);
+    }
+    else if (CompositeManager)
     {
         CompositeManager->ToggleMovimiento();
-        FString EstadoMovimiento = CompositeManager->IsMovimientoActivo() ? TEXT("ACTIVADO") : TEXT("DESACTIVADO");
     }
     else
     {
-        /*if (GEngine)
-        {
-            GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red,
-                TEXT("CompositeManager no encontrado - Intentando buscar..."));
-        }*/
         BuscarCompositeManager();
-    }
-}
-
-void AMyPlayerController::BuscarCompositeManager()
-{
-    if (!GetWorld())
-    {
-        // Reintentar en el próximo tick si el mundo no está disponible
-        GetWorldTimerManager().SetTimerForNextTick(this, &AMyPlayerController::BuscarCompositeManager);
-        return;
-    }
-
-    bool bFound = false;
-    for (TActorIterator<ACompositeManagerLaberinto> ActorItr(GetWorld()); ActorItr; ++ActorItr)
-    {
-        CompositeManager = *ActorItr;
-        if (CompositeManager)
-        {
-            if (GEngine)
-            {
-                GEngine->AddOnScreenDebugMessage(-1, 3.0f, FColor::Green,
-                    TEXT("CompositeManager encontrado y vinculado"));
-            }
-            bFound = true;
-            break;
-        }
-    }
-
-    if (!bFound)
-    {
-        /*if (GEngine)
-        {
-            GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Orange,
-                TEXT("CompositeManager no encontrado - Reintentando en 1 segundo..."));
-        }*/
-        // Reintentar después de 1 segundo
-        GetWorldTimerManager().SetTimerForNextTick(this, &AMyPlayerController::BuscarCompositeManager);
+        BuscarLaberintoFacade();
     }
 }
 
@@ -108,6 +131,80 @@ void AMyPlayerController::OnRightClick()
     if (Block)
     {
         ShowBlockInfo(Block);
+    }
+}
+
+// === MÉTODOS DE BÚSQUEDA ===
+
+void AMyPlayerController::BuscarLaberintoFacade()
+{
+    if (!GetWorld())
+    {
+        GetWorldTimerManager().SetTimerForNextTick(this, &AMyPlayerController::BuscarLaberintoFacade);
+        return;
+    }
+
+    for (TActorIterator<ALaberintoFacade> ActorItr(GetWorld()); ActorItr; ++ActorItr)
+    {
+        LaberintoFacade = *ActorItr;
+        if (LaberintoFacade)
+        {
+			// Asegurarse de que el Facade esté inicializado
+            return;
+        }
+    }
+
+    GetWorldTimerManager().SetTimerForNextTick(this, &AMyPlayerController::BuscarLaberintoFacade);
+}
+
+void AMyPlayerController::BuscarCompositeManager()
+{
+    if (!GetWorld())
+    {
+        GetWorldTimerManager().SetTimerForNextTick(this, &AMyPlayerController::BuscarCompositeManager);
+        return;
+    }
+
+    for (TActorIterator<ACompositeManagerLaberinto> ActorItr(GetWorld()); ActorItr; ++ActorItr)
+    {
+        CompositeManager = *ActorItr;
+        if (CompositeManager)
+        {
+            return;
+        }
+    }
+
+    GetWorldTimerManager().SetTimerForNextTick(this, &AMyPlayerController::BuscarCompositeManager);
+}
+
+// === MÉTODOS DE UTILIDAD ===
+
+void AMyPlayerController::CrearNivelConFacade(int32 NumeroNivel)
+{
+    if (!LaberintoFacade)
+    {
+		// Si no se encontró el Facade, intentar buscarlo
+        BuscarLaberintoFacade();
+        return;
+    }
+
+    // El Facade se encarga de borrar y crear automáticamente
+    LaberintoFacade->CrearLaberintoPorNivel(NumeroNivel, 20, 20);
+
+    FTimerHandle InfoTimer;
+    GetWorldTimerManager().SetTimer(InfoTimer, this, &AMyPlayerController::MostrarInfoNivel, 2.0f, false);
+}
+
+void AMyPlayerController::MostrarInfoNivel()
+{
+    if (!LaberintoFacade || !GEngine) return;
+
+    if (LaberintoFacade->IsLaberintoCreado())
+    {
+        int32 NivelActual = LaberintoFacade->GetNivelActual();
+        FString NombreNivel = LaberintoFacade->GetNombreNivel();
+        int32 BloquesDestructibles = LaberintoFacade->GetCantidadBloquesDestructibles();
+        int32 BloquesIndestructibles = LaberintoFacade->GetCantidadBloquesIndestructibles();
     }
 }
 
@@ -132,14 +229,6 @@ ABloqueBase* AMyPlayerController::GetBlockUnderCursor()
 
 void AMyPlayerController::DestroyBlock(ABloqueBase* Block)
 {
-    if (!Block || !Block->IsDestructible())
-    {
-        if (GEngine)
-        {
-            GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red, TEXT("Bloque indestructible"));
-        }
-        return;
-    }
 
     ETipoBloque TipoBloque = Block->GetTipoBloque();
     switch (TipoBloque)
@@ -169,8 +258,13 @@ void AMyPlayerController::ShowBlockInfo(ABloqueBase* Block)
 
     FString BlockType = Block->GetBlockType();
     bool bIsDestructible = Block->IsDestructible();
-    FVector BlockLocation = Block->GetActorLocation();
 
     FString DestructibleText = bIsDestructible ? TEXT("DESTRUCTIBLE") : TEXT("INDESTRUCTIBLE");
     FColor TextColor = bIsDestructible ? FColor::Green : FColor::Red;
+
+    if (GEngine)
+    {
+        GEngine->AddOnScreenDebugMessage(-1, 3.0f, TextColor,
+            FString::Printf(TEXT("BLOQUE: %s - %s"), *BlockType, *DestructibleText));
+    }
 }

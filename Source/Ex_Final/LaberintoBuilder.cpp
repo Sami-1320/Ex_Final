@@ -9,6 +9,7 @@
 #include "BloqueBurbuja.h"
 #include "Engine/World.h"
 #include "Math/UnrealMathUtility.h"
+#include "Kismet/GameplayStatics.h"
 
 ALaberintoBuilder::ALaberintoBuilder()
 {
@@ -40,12 +41,26 @@ void ALaberintoBuilder::SetDimensiones(int32 width, int32 height)
 
 void ALaberintoBuilder::Reset()
 {
+    if (GEngine)
+    {
+        GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red,
+            TEXT("BUILDER: Limpiando laberinto completo..."));
+    }
+
+    // Destruir físicamente todos los bloques
     LimpiarActores();
+
+    // Limpiar arrays internos
     Paredes.Empty();
     BloquesPiso.Empty();
     BloquesDestructibles.Empty();
     TileMap.Empty();
+
+    // Reinicializar variables
+    MazeWidth = 0;
+    MazeHeight = 0;
 }
+
 
 ALaberintoBuilder* ALaberintoBuilder::GetResultado()
 {
@@ -158,27 +173,51 @@ FVector ALaberintoBuilder::TileToWorldPosition(int32 X, int32 Y) const
 
 void ALaberintoBuilder::LimpiarActores()
 {
+    int32 BloquesDestruidos = 0;
+
+    // Destruir todas las paredes
     for (AActor* Actor : Paredes)
     {
         if (IsValid(Actor))
         {
             Actor->Destroy();
+            BloquesDestruidos++;
         }
     }
 
+    // Destruir todos los bloques de piso
     for (AActor* Actor : BloquesPiso)
     {
         if (IsValid(Actor))
         {
             Actor->Destroy();
+            BloquesDestruidos++;
         }
     }
 
+    // Destruir todos los bloques destructibles
     for (AActor* Actor : BloquesDestructibles)
     {
         if (IsValid(Actor))
         {
             Actor->Destroy();
+            BloquesDestruidos++;
+        }
+    }
+
+    // Buscar y destruir cualquier bloque restante en el mundo
+    if (GetWorld())
+    {
+        TArray<AActor*> BloquesEncontrados;
+        UGameplayStatics::GetAllActorsOfClass(GetWorld(), ABloqueBase::StaticClass(), BloquesEncontrados);
+
+        for (AActor* Bloque : BloquesEncontrados)
+        {
+            if (IsValid(Bloque))
+            {
+                Bloque->Destroy();
+                BloquesDestruidos++;
+            }
         }
     }
 }

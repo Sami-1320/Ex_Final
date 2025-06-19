@@ -14,7 +14,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define EX_FINAL_MyPlayerController_generated_h
 
-#define FID_Users_samsa_Documents_Unreal_Projects_Ex_Final_Source_Ex_Final_MyPlayerController_h_14_INCLASS_NO_PURE_DECLS \
+#define FID_Users_samsa_Documents_Unreal_Projects_Ex_Final_Source_Ex_Final_MyPlayerController_h_15_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesAMyPlayerController(); \
 	friend struct Z_Construct_UClass_AMyPlayerController_Statics; \
@@ -23,7 +23,7 @@ public: \
 	DECLARE_SERIALIZER(AMyPlayerController)
 
 
-#define FID_Users_samsa_Documents_Unreal_Projects_Ex_Final_Source_Ex_Final_MyPlayerController_h_14_ENHANCED_CONSTRUCTORS \
+#define FID_Users_samsa_Documents_Unreal_Projects_Ex_Final_Source_Ex_Final_MyPlayerController_h_15_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	AMyPlayerController(AMyPlayerController&&); \
@@ -35,12 +35,12 @@ public: \
 	NO_API virtual ~AMyPlayerController();
 
 
-#define FID_Users_samsa_Documents_Unreal_Projects_Ex_Final_Source_Ex_Final_MyPlayerController_h_11_PROLOG
-#define FID_Users_samsa_Documents_Unreal_Projects_Ex_Final_Source_Ex_Final_MyPlayerController_h_14_GENERATED_BODY \
+#define FID_Users_samsa_Documents_Unreal_Projects_Ex_Final_Source_Ex_Final_MyPlayerController_h_12_PROLOG
+#define FID_Users_samsa_Documents_Unreal_Projects_Ex_Final_Source_Ex_Final_MyPlayerController_h_15_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_Users_samsa_Documents_Unreal_Projects_Ex_Final_Source_Ex_Final_MyPlayerController_h_14_INCLASS_NO_PURE_DECLS \
-	FID_Users_samsa_Documents_Unreal_Projects_Ex_Final_Source_Ex_Final_MyPlayerController_h_14_ENHANCED_CONSTRUCTORS \
+	FID_Users_samsa_Documents_Unreal_Projects_Ex_Final_Source_Ex_Final_MyPlayerController_h_15_INCLASS_NO_PURE_DECLS \
+	FID_Users_samsa_Documents_Unreal_Projects_Ex_Final_Source_Ex_Final_MyPlayerController_h_15_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
